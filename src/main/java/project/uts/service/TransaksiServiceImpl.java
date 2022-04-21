@@ -19,6 +19,7 @@ public class TransaksiServiceImpl implements TransaksiService {
 
     @Override
     public List<Transaksi> getAllTransaksi() {
+
         return transaksiRepository.findAll();
     }
 
