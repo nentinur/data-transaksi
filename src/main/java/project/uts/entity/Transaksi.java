@@ -20,9 +20,9 @@ public class Transaksi {
 
     @NotEmpty(message = "Jumlah Barang Harus Diisi")
     @Column(nullable = false, name = "jumlahBarang")
-    private Long jumlahBarang;
+    private String jumlahBarang;
 
     @NotEmpty(message = "Harga Barang Harus Diisi")
     @Column(nullable = false, name = "hargaBarang")
-    private Long hargaBarang;
+    private String hargaBarang;
 }

@@ -21,7 +21,7 @@ public class TransaksiWebController {
     }
 
     @GetMapping(value = "/create")
-    public String create(Model model) {
+    public String create1(Model model) {
         model.addAttribute("transaksi", new Transaksi());
         return "formTransaksi";
     }
