@@ -13,7 +13,7 @@ public class TransaksiServiceImpl implements TransaksiService {
     private final TransaksiRepository transaksiRepository;
 
     @Autowired
-    public TransaksiServiceImpl(TransaksiRepository studentRepository) {
+    public TransaksiServiceImpl(TransaksiRepository transaksiRepository) {
         this.transaksiRepository = transaksiRepository;
     }
 
