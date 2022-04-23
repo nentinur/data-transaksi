@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Applikasi data transaksi</title>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          name="viewport">
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="icon" th:href="@{/img/ubuntu.png}">
+
+    <script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/jquery-3.3.1.slim.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/popper.min.js}" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Data Transaksi</h2>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <form class="form-horizontal" method="post"
+                  th:action="@{/create}" th:object="${transaksi}">
+                <input th:field="*{id}" type="hidden"/>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Nama Barang:</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" th:field="*{namaBarang}" type="text" id="namaBarang" placeholder="Nama Barang" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Jumlah Barang:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" th:field="*{jumlahBarang}" type="text" id="jumlahBarang" placeholder="Jumlah Barang" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Harga Barang:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="hargaBarang" required th:field="*{hargaBarang}" type="text" placeholder="Harga Barang">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input class="btn btn-success" type="submit" value="Save">
+                    <a class="btn btn-danger" role="button" th:href="@{/}">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
