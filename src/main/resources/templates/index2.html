@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Tambah data transaksi</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div align="center" class="col-md-12">
+    <h2>Tambah Data Transaksi</h2>
+    <div class="col-md-6">
+        <form action="#" method="post" th:action="@{/save-transaksi}" th:object="${transaksi}">
+            <div class="form-group">
+                <label for="namaBarang">Nama Barang:</label>
+                <input class="form-control" id="namaBarang" th:field="*{namaBarang}" type="text">
+                <p class="alert alert-danger" th:errors="*{namaBarang}" th:if="${#fields.hasErrors('namaBarang')}">
+            </div>
+            <div class="form-group">
+                <label for="jumlahBarang">Jumlah Barang:</label>
+                <input class="form-control" id="jumlahBarang" th:field="*{jumlahBarang}" type="text">
+                <p class="alert alert-danger" th:errors="*{jumlahBarang}" th:if="${#fields.hasErrors('jumlahBarang')}">
+            </div>
+            <div class="form-group">
+                <label for="hargaBarang">Harga Barang:</label>
+                <input class="form-control" id="hargaBarang" th:field="*{hargaBarang}" type="text"/>
+                <p class="alert alert-danger" th:errors="*{hargaBarang}" th:if="${#fields.hasErrors('hargaBarang')}"/>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
