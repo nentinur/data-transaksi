@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.uts.entity.Transaksi;
-import project.uts.service.TransaksiService;
+import project.uts.service.framework.TransaksiService;
 
 @Controller
 @AllArgsConstructor
