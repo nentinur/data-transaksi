@@ -15,6 +15,10 @@
 	<description>Project UTS Praktikum PBO</description>
 	<properties>
 		<java.version>11</java.version>
+		<java.version>11</java.version>
+		<bootstrap.version>5.1.3</bootstrap.version>
+		<jquery.version>3.6.0</jquery.version>
+		<fontAwesome.version>6.1.0</fontAwesome.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -69,6 +73,45 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<version>2.6.6</version>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${bootstrap.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>${jquery.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>${fontAwesome.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.icegreen</groupId>
+			<artifactId>greenmail</artifactId>
+			<version>1.5.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.2.3.Final</version>
 		</dependency>
 	</dependencies>
 
