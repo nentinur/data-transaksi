@@ -16,7 +16,7 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <h3><i class="fas fa-lock" style="font-size:2em;"></i></h3>
-                        <h2 class="text-center">Create New Account</h2>
+                        <h2 class="text-center">Daftar Akun Baru</h2>
                         <div class="panel-body">
 
                             <div th:if="${success}">
@@ -28,14 +28,14 @@
 
                             <form method="post" th:action="@{/signup}" th:object="${user}">
                                 <div class="form-group">
-                                    <label for="firstName">First Name</label>
+                                    <label for="firstName">Nama Depan</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-envelope"></i></span>
                                         </div>
                                         <input aria-describedby="basic-addon1" class="form-control" id="firstName"
-                                               placeholder="First Name" th:errorClass="is-invalid"
+                                               placeholder="Nama Depan" th:errorClass="is-invalid"
                                                th:field="*{firstName}" type="text"/>
                                     </div>
                                     <span class="text-danger"
@@ -44,14 +44,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="lastName">Last Name</label>
+                                    <label for="lastName">Nama Belakang</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon2"><i
                                                     class="fas fa-envelope"></i></span>
                                         </div>
                                         <input aria-describedby="basic-addon1" class="form-control" id="lastName"
-                                               placeholder="Last Name" th:errorClass="is-invalid"
+                                               placeholder="Nama Belakang" th:errorClass="is-invalid"
                                                th:field="*{lastName}" type="text"/>
                                     </div>
                                     <span class="text-danger"
@@ -60,14 +60,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">Email Address</label>
+                                    <label for="email">Alamat Email</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon3"><i
                                                     class="fas fa-envelope"></i></span>
                                         </div>
                                         <input aria-describedby="basic-addon3" class="form-control" id="email"
-                                               placeholder="Email Address" th:errorClass="is-invalid"
+                                               placeholder="Alamat Email" th:errorClass="is-invalid"
                                                th:field="*{email}" type="text"/>
                                     </div>
                                     <span class="text-danger"
@@ -92,7 +92,7 @@
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    <button class="btn btn-success btn-block" type="submit">Register</button>
+                                    <button class="btn btn-success btn-block" type="submit">Daftar</button>
                                 </div>
                             </form>
 
@@ -102,7 +102,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    Already registered? <a href="/" th:href="@{/login}">Login</a>
+                    Sudah Mendaftar? <a href="/" th:href="@{/login}">Login</a>
                 </div>
             </div>
         </div>
@@ -112,4 +112,4 @@
 <script th:src="@{webjars/jquery/3.6.0/jquery.min.js}" type="text/javascript"></script>
 <script th:src="@{webjars/bootstrap/5.1.3/js/bootstrap.min.js}" type="text/javascript"></script>
 </body>
-</html>-
+</html>

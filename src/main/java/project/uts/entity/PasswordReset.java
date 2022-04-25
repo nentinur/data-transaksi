@@ -1,10 +1,9 @@
 package project.uts.entity;
 
-import lombok.Data;
 import project.uts.validator.PasswordConfirmation;
+import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
-
 @Data
 @PasswordConfirmation(
         password = "password",
