@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import project.uts.entity.Transaksi;
 import project.uts.exception.TransaksiNotFoundException;
-import project.uts.service.TransaksiService;
+import project.uts.service.framework.TransaksiService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
