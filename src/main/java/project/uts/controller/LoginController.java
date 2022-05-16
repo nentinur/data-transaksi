@@ -13,44 +13,45 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.uts.entity.User;
 import project.uts.service.framework.UserService;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/signup")
-public class SignupController {
+@RequestMapping("/login")
+public class LoginController {
     private final UserService userService;
     private final MessageSource messageSource;
 
     @Autowired
-    public SignupController(UserService userService, MessageSource messageSource) {
+    public LoginController(UserService userService, MessageSource messageSource) {
         this.userService = userService;
         this.messageSource = messageSource;
     }
 
     @GetMapping
     public String viewPage() {
-        return "signup";
+        return "login";
     }
 
     @PostMapping
-    public String saveUser(@Valid @ModelAttribute("user") User user,
-                           BindingResult result,
-                           Model model,
-                           RedirectAttributes attributes) {
+    public String loginUser(
+            @ModelAttribute("user") User user,
+            HttpServletRequest request,
+            BindingResult result,
+            Model model,
+            RedirectAttributes attributes) {
+        System.out.println("LoginController.login");
         if (result.hasErrors()) {
-            return "signup";
+            return "login";
         }
-        if (userService.findByEmail(user.getEmail()) != null) {
-            model.addAttribute("error", "Email sudah terdaftar, silahkan mendaftar dengan alamat email lain.");
-        }
-        user = userService.save(user);
+
+        user = userService.login(user, request);
         if (user == null) {
-            model.addAttribute("error", "Terjadi kesalahan saat menyimpan akun, silahkan coba lagi nanti!");
-            return "signup";
+            model.addAttribute(
+                    "error", "Login gagal.");
+            return "login";
         }
-        attributes.addFlashAttribute("success", "Akun anda sudah dibuat, silahkan login dengan email dan password anda!");
-        return "redirect:/signup";
+        return "redirect:/index";
     }
 
     @ModelAttribute("user")

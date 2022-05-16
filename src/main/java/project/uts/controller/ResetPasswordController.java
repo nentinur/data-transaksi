@@ -35,9 +35,9 @@ public class ResetPasswordController {
     public String viewPage(@RequestParam(name = "token", required = false) String token, Model model) {
         PasswordResetToken passwordResetToken = tokenService.findByToken(token);
         if (passwordResetToken == null) {
-            model.addAttribute("error", messageSource.getMessage("TOKEN_NOT_FOUND", new Object[]{}, Locale.ENGLISH));
+            model.addAttribute("error", "Tidak dapat menemukan token reset password.");
         } else if (passwordResetToken.getExpirationDate().isBefore(LocalDateTime.now())) {
-            model.addAttribute("error", messageSource.getMessage("TOKEN_EXPIRED", new Object[]{}, Locale.ENGLISH));
+            model.addAttribute("error", "Token sudah kadaluarsa, silahkan minta reset password baru.");
         } else {
             model.addAttribute("token", passwordResetToken.getToken());
         }

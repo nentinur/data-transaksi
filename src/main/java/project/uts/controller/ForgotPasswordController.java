@@ -60,8 +60,7 @@ public class ForgotPasswordController {
         }
         User user = userService.findByEmail(passwordForgot.getEmail());
         if (user == null) {
-            model.addAttribute("emailError", messageSource.getMessage("EMAIL_NOT_FOUND", new Object[]{},
-                    Locale.ENGLISH));
+            model.addAttribute("emailError","Alamat email tidak ditemukan!.");
             return "forgot-password";
         }
 
@@ -75,7 +74,7 @@ public class ForgotPasswordController {
                     Locale.ENGLISH));
             return "forgot-password";
         }
-        Mail mail = new Mail();
+        final var mail = new Mail();
         mail.setFrom("no-reply@mohyehia.com");
         mail.setTo(user.getEmail());
         mail.setSubject("Password reset request");
@@ -84,7 +83,7 @@ public class ForgotPasswordController {
         mailModel.put("token", token);
         mailModel.put("user", user);
         mailModel.put("signature", "https://github.com/nentinur/data-transaksi");
-        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+        final var url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         mailModel.put("resetUrl", url + "/reset-password?token=" + token.getToken());
         mail.setModel(mailModel);
 

@@ -27,17 +27,21 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void send(Mail mail) {
         try {
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,
-                    MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
-                    StandardCharsets.UTF_8.name());
-            Context context = new Context();
+            final var mimeMessage = mailSender.createMimeMessage();
+            final var helper =
+                    new MimeMessageHelper(
+                            mimeMessage,
+                            MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
+                            StandardCharsets.UTF_8.name());
+            final var context = new Context();
             context.setVariables(mail.getModel());
-            String html = templateEngine.process("email/email-template", context);
+
+            final var html = templateEngine.process("email/email-template", context);
             helper.setTo(mail.getTo());
             helper.setFrom(mail.getFrom());
             helper.setSubject(mail.getSubject());
             helper.setText(html, true);
+
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             e.printStackTrace();
