@@ -11,36 +11,35 @@ spring:
       cache:
         period: 0
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:postgresql://localhost:5432/data-transaksi
-    username: nentinur
-    password: Nn300901
+    url: jdbc:mysql://localhost:3306/transaksi?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Jakarta&useSSL=false
+    username: root
+    password:
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
   config:
     activate:
       on-profile: dev
   messages:
     basename: base
   mail:
-    host: smtp.gmail.com
-    username: nentinur300901@gmail.com
-    properties:
-      mail:
-        smtp:
-          starttls:
-            required: 'true'
-            enable: 'true'
-          connection-timeout: '30000'
-          timeout: '30000'
-          auth: 'true'
-    protocol: smtp
-    test-connection: 'false'
-    port: '587'
-    password: wrylziivnvyxyacr
-    default-encoding: UTF-8
+  default-encoding: UTF-8
+  host: smtp.gmail.com
+  username: nenur2001@gmail.com
+  password: kwtxitplrerypjqq
+  port: 587
+  properties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+          required: true
+        connectiontimeout: 30000
+        timeout: 30000
+  protocol: smtp
+  test-connection: false

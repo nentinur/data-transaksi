@@ -31,7 +31,7 @@ public class WebConfig implements WebMvcConfigurer {
 
         javaMailSender.setProtocol("SMTP");
         javaMailSender.setHost("127.0.0.1");
-        javaMailSender.setPort(25);
+        javaMailSender.setPort(587);
 
         return javaMailSender;
     }
@@ -57,4 +57,5 @@ public class WebConfig implements WebMvcConfigurer {
         factoryBean.setValidationMessageSource(messageSource);
         return factoryBean;
     }
+
 }

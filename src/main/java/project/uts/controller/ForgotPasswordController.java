@@ -1,4 +1,11 @@
 package project.uts.controller;
+import project.uts.entity.Mail;
+import project.uts.entity.PasswordForgot;
+import project.uts.entity.PasswordResetToken;
+import project.uts.entity.User;
+import project.uts.service.framework.EmailService;
+import project.uts.service.framework.PasswordResetTokenService;
+import project.uts.service.framework.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -10,13 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import project.uts.entity.Mail;
-import project.uts.entity.PasswordForgot;
-import project.uts.entity.PasswordResetToken;
-import project.uts.entity.User;
-import project.uts.service.framework.EmailService;
-import project.uts.service.framework.PasswordResetTokenService;
-import project.uts.service.framework.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -45,7 +45,6 @@ public class ForgotPasswordController {
 
     @GetMapping
     public String viewPage() {
-
         return "forgot-password";
     }
 
@@ -60,10 +59,11 @@ public class ForgotPasswordController {
         }
         User user = userService.findByEmail(passwordForgot.getEmail());
         if (user == null) {
-            model.addAttribute("emailError","Alamat email tidak ditemukan!.");
+            model.addAttribute("emailError", messageSource.getMessage("EMAIL_NOT_FOUND", new Object[]{},
+                    Locale.ENGLISH));
             return "forgot-password";
         }
-
+        // proceed to send email with link to reset password to this email address
         PasswordResetToken token = new PasswordResetToken();
         token.setUser(user);
         token.setToken(UUID.randomUUID().toString());
@@ -74,7 +74,7 @@ public class ForgotPasswordController {
                     Locale.ENGLISH));
             return "forgot-password";
         }
-        final var mail = new Mail();
+        Mail mail = new Mail();
         mail.setFrom("no-reply@mohyehia.com");
         mail.setTo(user.getEmail());
         mail.setSubject("Password reset request");
@@ -82,11 +82,13 @@ public class ForgotPasswordController {
         Map<String, Object> mailModel = new HashMap<>();
         mailModel.put("token", token);
         mailModel.put("user", user);
-        mailModel.put("signature", "https://github.com/nentinur/data-transaksi");
-        final var url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+        mailModel.put("signature", "https://linktr.ee/hendisantika");
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         mailModel.put("resetUrl", url + "/reset-password?token=" + token.getToken());
         mail.setModel(mailModel);
-
+        /* send email using emailService
+        if email sent successfully redirect with flash attributes
+         */
         emailService.send(mail);
         attributes.addFlashAttribute("success", messageSource.getMessage("PASSWORD_RESET_TOKEN_SENT", new Object[]{},
                 Locale.ENGLISH));
@@ -95,7 +97,6 @@ public class ForgotPasswordController {
 
     @ModelAttribute("passwordForgot")
     public PasswordForgot passwordForgot() {
-
         return new PasswordForgot();
     }
 }
